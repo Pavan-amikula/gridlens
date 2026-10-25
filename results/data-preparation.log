@@ -1,0 +1,19 @@
+{
+  "dataset": "PM100 v3, Marconi100 jobs May\u2013October 2020",
+  "authors": "Francesco Antici, Mohsen Seyedkazemi Ardebili, Andrea Bartolini, Zeynep Kiziltan",
+  "doi": "https://doi.org/10.5281/zenodo.10127767",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "original_url": "https://zenodo.org/api/records/10127767/files/job_table.parquet/content",
+  "original_md5": "cf85f171a5ed5ff1d951d93f9bcbc6ef",
+  "selection": "First 64 source rows; retain valid positive power with >=2 samples and allocated nodes; first 120 values per retained job.",
+  "retained_jobs": 30,
+  "retained_samples": 2022,
+  "node_power_quantiles_w": [
+    510.27155172413796,
+    602.143691588785,
+    888.7472527472529
+  ],
+  "use": "HPC loading sensitivity only. Normalize mean-node-power quantiles to a hypothetical 100 MW median facility. No inference of hyperscale grid disturbance behavior or subsecond bandwidth.",
+  "not_representative": "Deterministic small head subset, not a representative sample of the full dataset."
+}

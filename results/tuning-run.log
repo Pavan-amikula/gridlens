@@ -1,0 +1,60 @@
+{
+  "metrics": {
+    "min_voltage_pu": 0.5859931882256773,
+    "postfault_min_voltage_pu": 0.9842640825681348,
+    "frequency_nadir_hz": 49.839789723260324,
+    "max_rocof_hz_s": 0.11703969339009745,
+    "max_ramp_mw_s": 761.5123608501018,
+    "workload_ramp_mw_s": 14.676471182292232,
+    "unserved_mwh": 0.0,
+    "bess_throughput_mwh": 0.1009733953247518,
+    "final_soc": 0.5977727740649303,
+    "thdv_percent": 1.6060559348421164,
+    "no_equilibrium_samples": 0,
+    "steady_voltage_pu": 0.985611283080597
+  },
+  "checks": [
+    {
+      "name": "Post-fault recovery",
+      "passed": true,
+      "criterion": ">= 0.90 pu after clearance + 0.5 s",
+      "basis": "Illustrative engineering study target"
+    },
+    {
+      "name": "Frequency nadir",
+      "passed": true,
+      "criterion": ">= 49.50 Hz",
+      "basis": "Illustrative engineering study target"
+    },
+    {
+      "name": "AI workload ramp",
+      "passed": true,
+      "criterion": "<= 20 MW/s, 100 ms window",
+      "basis": "Illustrative engineering study target"
+    },
+    {
+      "name": "Harmonic voltage",
+      "passed": true,
+      "criterion": "THDv <= 3% for assumed spectrum",
+      "basis": "Illustrative engineering study target"
+    },
+    {
+      "name": "IT supply continuity",
+      "passed": true,
+      "criterion": "unserved energy <= 0.1 kWh",
+      "basis": "Illustrative engineering study target"
+    }
+  ],
+  "national_screen": {
+    "profile": "FI directly transmission-connected large demand, June 2026",
+    "applicability": "Potentially applicable to new >=30 MW directly connected demand; confirm project terms",
+    "source": "https://www.fingrid.fi/globalassets/dokumentit/fi/palvelut/kulutuksen-ja-tuotannon-liittaminen-kantaverkkoon/fingrid---suurten-kulutuslaitosten-tekniset-vaatimukset.pdf",
+    "basis": "Section 9.1.11; reduced-model recovery screening only",
+    "status": "RECOVERY RISK",
+    "grid_demand_at_deadline_pu": 0.7550000000000001,
+    "deadline_s": 3.16,
+    "criterion": ">=90% pre-fault grid demand by 1 s after V>=0.90 pu",
+    "whole_facility_disconnection_detected": true,
+    "frt_conclusion": "Protection logic requires redesign and EMT verification"
+  }
+}

@@ -1,0 +1,1 @@
+Browser QA passed: run, tabs, gain, comparison, CSV, playback, mobile, zero JS errors

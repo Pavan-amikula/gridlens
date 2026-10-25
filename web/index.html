@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>GridLens · Connection study bench</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="/" aria-label="GridLens home"
+        ><span class="mark">⌁</span> GridLens<span class="edition"
+          >ENGINEERING / 01</span
+        ></a
+      >
+      <div class="header-right">
+        <span class="dot"></span> LOCAL STUDY ENGINE
+        <span class="separator">|</span><span>100 MW REFERENCE FACILITY</span>
+      </div>
+    </header>
+    <div class="shell">
+      <aside>
+        <div class="eyebrow">STUDY CONFIGURATION</div>
+        <h2>Connection<br />workspace</h2>
+        <p class="muted">
+          A transmission interface for the next generation of compute.
+        </p>
+        <label for="scenario">Disturbance</label
+        ><select id="scenario"></select>
+        <label for="mitigation">Mitigation architecture</label
+        ><select id="mitigation"></select>
+        <div class="slider-head">
+          <label for="scr">Short-circuit ratio</label
+          ><output id="scr-out">4.0</output>
+        </div>
+        <input id="scr" type="range" min="2" max="12" step="0.5" value="4" />
+        <div class="range-caption">
+          <span>WEAK / 2</span><span>STRONG / 12</span>
+        </div>
+        <label for="load">Facility demand <span>MW</span></label
+        ><input type="number" id="load" min="20" max="300" value="100" />
+        <label for="bess">BESS active power <span>MW</span></label
+        ><input type="number" id="bess" min="0" max="150" value="40" />
+        <button id="run" class="primary">
+          Run connection study <span>↗</span></button
+        ><button id="compare" class="secondary">
+          Compare all 6 architectures
+        </button>
+        <div class="aside-bottom">
+          <div class="eyebrow">MODEL SCOPE</div>
+          <p>Balanced positive sequence<br />12 s horizon · 5 ms timestep</p>
+          <div class="scope-badge">SCREENING MODEL</div>
+          <p class="small">
+            Synthetic disturbances. Study targets are illustrative. Regulatory
+            applicability requires project-specific review.
+          </p>
+        </div>
+      </aside>
+      <main>
+        <div class="heading">
+          <div>
+            <div class="eyebrow">LARGE DEMAND / INTERCONNECTION RISK</div>
+            <h1>Compute meets the grid.</h1>
+            <p>Explore disturbances. Compare support. Inspect the evidence.</p>
+          </div>
+          <div class="study-id">
+            STUDY GL–001<br /><span id="status">READY</span>
+          </div>
+        </div>
+        <div class="singleline" aria-label="Single-line system diagram">
+          <div>
+            <span class="node">∿</span><b>Regional grid</b
+            ><small>10 GVA · 50 Hz</small>
+          </div>
+          <i></i>
+          <div>
+            <span class="node">⫶</span><b>Transmission link</b
+            ><small id="link-scr">SCR 4.0 · X/R 10</small>
+          </div>
+          <i></i>
+          <div>
+            <span class="node poc">●</span><b>Point of connection</b
+            ><small id="poc">100 MW / 0.98 PF</small>
+          </div>
+          <i></i>
+          <div>
+            <span class="node">▤</span><b>AI data center</b
+            ><small>IT + cooling + UPS</small>
+          </div>
+          <div class="support" id="architecture">COORDINATED SUPPORT</div>
+        </div>
+        <section class="metrics">
+          <article>
+            <div class="eyebrow">VOLTAGE MINIMUM</div>
+            <strong id="metric-v">—</strong><span>pu / during event</span>
+            <div class="microline copper"></div>
+          </article>
+          <article>
+            <div class="eyebrow">FREQUENCY NADIR</div>
+            <strong id="metric-f">—</strong
+            ><span>Hz / regional equivalent</span>
+            <div class="microline blue"></div>
+          </article>
+          <article>
+            <div class="eyebrow">UNSERVED IT ENERGY</div>
+            <strong id="metric-e">—</strong><span>kWh / event horizon</span>
+            <div class="microline dark"></div>
+          </article>
+          <article>
+            <div class="eyebrow">VOLTAGE DISTORTION</div>
+            <strong id="metric-h">—</strong
+            ><span>% THDv / assumed spectrum</span>
+            <div class="microline green"></div>
+          </article>
+        </section>
+        <nav class="tabs" aria-label="Study views">
+          <button data-tab="transient" class="active">
+            01 <span>Transient response</span></button
+          ><button data-tab="harmonics">02 <span>Power quality</span></button
+          ><button data-tab="modes">03 <span>Control interactions</span></button
+          ><button data-tab="evidence">
+            04 <span>Evidence & results</span>
+          </button>
+        </nav>
+        <section id="transient" class="view active">
+          <div class="panel chart-panel">
+            <div class="panel-heading">
+              <div>
+                <h3>Disturbance response</h3>
+                <p>
+                  Point of connection · selected architecture vs unmitigated
+                </p>
+              </div>
+              <div class="legend">
+                <span class="solid"></span> Selected
+                <span class="dashed"></span> Baseline
+              </div>
+            </div>
+            <div class="chart-grid">
+              <div>
+                <h4>Voltage <span>pu</span></h4>
+                <canvas
+                  id="voltage"
+                  aria-label="Voltage response plot"
+                ></canvas>
+              </div>
+              <div>
+                <h4>Frequency <span>Hz</span></h4>
+                <canvas
+                  id="frequency"
+                  aria-label="Frequency response plot"
+                ></canvas>
+              </div>
+              <div>
+                <h4>Grid import & BESS <span>MW</span></h4>
+                <canvas
+                  id="power"
+                  aria-label="Grid power and BESS response plot"
+                ></canvas>
+              </div>
+              <div>
+                <h4>IT supply deficit <span>MW</span></h4>
+                <canvas id="unserved" aria-label="Unserved load plot"></canvas>
+              </div>
+            </div>
+            <div class="playbar">
+              <button id="play" aria-label="Play or pause study">
+                ▶ Replay</button
+              ><input
+                id="timeline"
+                type="range"
+                min="0"
+                max="12"
+                value="12"
+                step="0.02"
+                aria-label="Study time"
+              /><output id="time">12.00 s</output
+              ><button id="csv">↓ Export CSV</button>
+            </div>
+          </div>
+          <div class="panel targets">
+            <div class="panel-heading">
+              <div>
+                <h3>Engineering study targets</h3>
+                <p>Illustrative thresholds · not a compliance certificate</p>
+              </div>
+              <span class="scope-badge">ASSUMPTIONS</span>
+            </div>
+            <div id="checks"></div>
+            <div id="national" class="national-screen"></div>
+          </div>
+        </section>
+        <section id="harmonics" class="view">
+          <div class="panel">
+            <div class="panel-heading">
+              <div>
+                <h3>Harmonic voltage spectrum</h3>
+                <p>
+                  Current injection × frequency-dependent Thevenin impedance
+                </p>
+              </div>
+            </div>
+            <canvas id="spectrum" class="large-chart"></canvas>
+            <p class="note">
+              Orders 5, 7, 11 and 13 use an assumed converter current spectrum.
+              The coordinated architecture applies assumed filter attenuation.
+              Resonances, background distortion and measured vendor spectra
+              require a separate impedance scan and EMT validation.
+            </p>
+          </div>
+          <div class="panel">
+            <h3>Filter trade-off</h3>
+            <p class="note">
+              Lower harmonic voltage does not establish compliance with
+              site-specific emission allocations. Capacitor/filter resonance and
+              switching transients must be evaluated before equipment selection.
+            </p>
+          </div>
+        </section>
+        <section id="modes" class="view">
+          <div class="panel">
+            <div class="panel-heading">
+              <div>
+                <h3>Local reactive control loop</h3>
+                <p>Linearized actuator + measurement lag · gain sensitivity</p>
+              </div>
+            </div>
+            <label for="gain">Reactive gain (Mvar/pu)</label
+            ><input
+              id="gain"
+              type="range"
+              min="0"
+              max="600"
+              step="25"
+              value="300"
+            /><output id="gain-out">300 Mvar/pu</output>
+            <div id="mode-results"></div>
+            <p class="note">
+              These poles describe one reduced local loop. PLL instability,
+              multi-converter interactions, subsynchronous modes and
+              grid-forming behavior are outside this model. Increasing gain
+              raises oscillation frequency and may reduce damping ratio even
+              when poles remain stable.
+            </p>
+          </div>
+        </section>
+        <section id="evidence" class="view">
+          <div class="panel">
+            <div class="panel-heading">
+              <div>
+                <h3>Measured-data-informed loading</h3>
+                <p>
+                  PM100 · Marconi100 HPC · CC BY 4.0 · separate from synthetic
+                  disturbances
+                </p>
+              </div>
+            </div>
+            <div id="workload-evidence"></div>
+          </div>
+          <div class="panel">
+            <div class="panel-heading">
+              <div>
+                <h3>Architecture comparison</h3>
+                <p>
+                  Current configuration · identical disturbances and network
+                  parameters
+                </p>
+              </div>
+              <button id="compare2" class="secondary">Run comparison ↗</button>
+            </div>
+            <div id="comparison">
+              <p class="note">
+                Run a comparison to evaluate all six architectures.
+              </p>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>Evidence boundaries</h3>
+            <p class="note">
+              EU Demand Connection Code (2016/1388) is the regulatory starting
+              point. Finnish demand, storage and Swedish connection requirements
+              must be assessed separately. The repository includes a cited
+              research register, model equations, reproducible batch outputs and
+              a licensed-tool validation plan.
+            </p>
+            <a
+              href="https://eur-lex.europa.eu/eli/reg/2016/1388/oj"
+              target="_blank"
+              rel="noreferrer"
+              >Open the EU Demand Connection Code ↗</a
+            >
+          </div>
+        </section>
+        <footer>
+          <span>GRIDLENS / DATA CENTER CONNECTION LAB</span
+          ><span id="runtime"
+            >DETERMINISTIC STUDY · NO LIVE GRID CONNECTION</span
+          >
+        </footer>
+      </main>
+    </div>
+    <script src="/static/app.js"></script>
+  </body>
+</html>

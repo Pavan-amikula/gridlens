@@ -1,0 +1,372 @@
+Completed SCR=2.0: 36 cases
+Completed SCR=4.0: 72 cases
+Completed SCR=8.0: 108 cases
+{
+  "case_count": 108,
+  "method": "Synthetic balanced positive-sequence screening",
+  "reference": {
+    "baseline": {
+      "metrics": {
+        "min_voltage_pu": 0.5641803632251368,
+        "postfault_min_voltage_pu": 0.94724447734194,
+        "frequency_nadir_hz": 49.81297607278959,
+        "max_rocof_hz_s": 0.1467124213817783,
+        "max_ramp_mw_s": 1000.0,
+        "workload_ramp_mw_s": 150.000000000001,
+        "unserved_mwh": 0.023080848960969066,
+        "bess_throughput_mwh": 0.0,
+        "final_soc": 0.6,
+        "thdv_percent": 5.539785779716444,
+        "no_equilibrium_samples": 0,
+        "steady_voltage_pu": 0.9472444773419398
+      },
+      "checks": [
+        {
+          "name": "Post-fault recovery",
+          "passed": true,
+          "criterion": ">= 0.90 pu after clearance + 0.5 s",
+          "basis": "Illustrative engineering study target"
+        },
+        {
+          "name": "Frequency nadir",
+          "passed": true,
+          "criterion": ">= 49.50 Hz",
+          "basis": "Illustrative engineering study target"
+        },
+        {
+          "name": "AI workload ramp",
+          "passed": false,
+          "criterion": "<= 20 MW/s, 100 ms window",
+          "basis": "Illustrative engineering study target"
+        },
+        {
+          "name": "Harmonic voltage",
+          "passed": false,
+          "criterion": "THDv <= 3% for assumed spectrum",
+          "basis": "Illustrative engineering study target"
+        },
+        {
+          "name": "IT supply continuity",
+          "passed": false,
+          "criterion": "unserved energy <= 0.1 kWh",
+          "basis": "Illustrative engineering study target"
+        }
+      ],
+      "national_screen": {
+        "profile": "FI directly transmission-connected large demand, June 2026",
+        "applicability": "Potentially applicable to new >=30 MW directly connected demand; confirm project terms",
+        "source": "https://www.fingrid.fi/globalassets/dokumentit/fi/palvelut/kulutuksen-ja-tuotannon-liittaminen-kantaverkkoon/fingrid---suurten-kulutuslaitosten-tekniset-vaatimukset.pdf",
+        "basis": "Section 9.1.11; reduced-model recovery screening only",
+        "status": "MEETS RECOVERY SCREEN",
+        "grid_demand_at_deadline_pu": 1.0,
+        "deadline_s": 3.165,
+        "criterion": ">=90% pre-fault grid demand by 1 s after V>=0.90 pu",
+        "whole_facility_disconnection_detected": true,
+        "frt_conclusion": "Protection logic requires redesign and EMT verification"
+      }
+    },
+    "bess": {
+      "metrics": {
+        "min_voltage_pu": 0.5639606705058967,
+        "postfault_min_voltage_pu": 0.9643862556155626,
+        "frequency_nadir_hz": 49.83344204023545,
+        "max_rocof_hz_s": 0.13999076638384622,
+        "max_ramp_mw_s": 966.8461035023535,
+        "workload_ramp_mw_s": 70.36955840124321,
+        "unserved_mwh": 0.0230811950775397,
+        "bess_throughput_mwh": 0.06142034649930136,
+        "final_soc": 0.597626819959955,
+        "thdv_percent": 5.539785779716444,
+        "no_equilibrium_samples": 0,
+        "steady_voltage_pu": 0.9644718972383911
+      },
+      "checks": [
+        {
+          "name": "Post-fault recovery",
+          "passed": true,
+          "criterion": ">= 0.90 pu after clearance + 0.5 s",
+          "basis": "Illustrative engineering study target"
+        },
+        {
+          "name": "Frequency nadir",
+          "passed": true,
+          "criterion": ">= 49.50 Hz",
+          "basis": "Illustrative engineering study target"
+        },
+        {
+          "name": "AI workload ramp",
+          "passed": false,
+          "criterion": "<= 20 MW/s, 100 ms window",
+          "basis": "Illustrative engineering study target"
+        },
+        {
+          "name": "Harmonic voltage",
+          "passed": false,
+          "criterion": "THDv <= 3% for assumed spectrum",
+          "basis": "Illustrative engineering study target"
+        },
+        {
+          "name": "IT supply continuity",
+          "passed": false,
+          "criterion": "unserved energy <= 0.1 kWh",
+          "basis": "Illustrative engineering study target"
+        }
+      ],
+      "national_screen": {
+        "profile": "FI directly transmission-connected large demand, June 2026",
+        "applicability": "Potentially applicable to new >=30 MW directly connected demand; confirm project terms",
+        "source": "https://www.fingrid.fi/globalassets/dokumentit/fi/palvelut/kulutuksen-ja-tuotannon-liittaminen-kantaverkkoon/fingrid---suurten-kulutuslaitosten-tekniset-vaatimukset.pdf",
+        "basis": "Section 9.1.11; reduced-model recovery screening only",
+        "status": "MEETS RECOVERY SCREEN",
+        "grid_demand_at_deadline_pu": 0.9732909106707514,
+        "deadline_s": 3.165,
+        "criterion": ">=90% pre-fault grid demand by 1 s after V>=0.90 pu",
+        "whole_facility_disconnection_detected": true,
+        "frt_conclusion": "Protection logic requires redesign and EMT verification"
+      }
+    },
+    "statcom": {
+      "metrics": {
+        "min_voltage_pu": 0.5864239162690892,
+        "postfault_min_voltage_pu": 0.9655762003148564,
+        "frequency_nadir_hz": 49.8129785468727,
+        "max_rocof_hz_s": 0.14668012714906808,
+        "max_ramp_mw_s": 1000.0,
+        "workload_ramp_mw_s": 150.000000000001,
+        "unserved_mwh": 0.0230500362220195,
+        "bess_throughput_mwh": 0.0,
+        "final_soc": 0.6,
+        "thdv_percent": 5.539785779716444,
+        "no_equilibrium_samples": 0,
+        "steady_voltage_pu": 0.9725281704117189
+      },
+      "checks": [
+        {
+          "name": "Post-fault recovery",
+          "passed": true,
+          "criterion": ">= 0.90 pu after clearance + 0.5 s",
+          "basis": "Illustrative engineering study target"
+        },
+        {
+          "name": "Frequency nadir",
+          "passed": true,
+          "criterion": ">= 49.50 Hz",
+          "basis": "Illustrative engineering study target"
+        },
+        {
+          "name": "AI workload ramp",
+          "passed": false,
+          "criterion": "<= 20 MW/s, 100 ms window",
+          "basis": "Illustrative engineering study target"
+        },
+        {
+          "name": "Harmonic voltage",
+          "passed": false,
+          "criterion": "THDv <= 3% for assumed spectrum",
+          "basis": "Illustrative engineering study target"
+        },
+        {
+          "name": "IT supply continuity",
+          "passed": false,
+          "criterion": "unserved energy <= 0.1 kWh",
+          "basis": "Illustrative engineering study target"
+        }
+      ],
+      "national_screen": {
+        "profile": "FI directly transmission-connected large demand, June 2026",
+        "applicability": "Potentially applicable to new >=30 MW directly connected demand; confirm project terms",
+        "source": "https://www.fingrid.fi/globalassets/dokumentit/fi/palvelut/kulutuksen-ja-tuotannon-liittaminen-kantaverkkoon/fingrid---suurten-kulutuslaitosten-tekniset-vaatimukset.pdf",
+        "basis": "Section 9.1.11; reduced-model recovery screening only",
+        "status": "MEETS RECOVERY SCREEN",
+        "grid_demand_at_deadline_pu": 1.0,
+        "deadline_s": 3.16,
+        "criterion": ">=90% pre-fault grid demand by 1 s after V>=0.90 pu",
+        "whole_facility_disconnection_detected": true,
+        "frt_conclusion": "Protection logic requires redesign and EMT verification"
+      }
+    },
+    "condenser": {
+      "metrics": {
+        "min_voltage_pu": 0.5747953519057499,
+        "postfault_min_voltage_pu": 0.9603564883939864,
+        "frequency_nadir_hz": 49.81384993102277,
+        "max_rocof_hz_s": 0.14075645542845905,
+        "max_ramp_mw_s": 1000.0,
+        "workload_ramp_mw_s": 150.000000000001,
+        "unserved_mwh": 0.02306654787667455,
+        "bess_throughput_mwh": 0.0,
+        "final_soc": 0.6,
+        "thdv_percent": 5.539785779716444,
+        "no_equilibrium_samples": 0,
+        "steady_voltage_pu": 0.9725281704117189
+      },
+      "checks": [
+        {
+          "name": "Post-fault recovery",
+          "passed": true,
+          "criterion": ">= 0.90 pu after clearance + 0.5 s",
+          "basis": "Illustrative engineering study target"
+        },
+        {
+          "name": "Frequency nadir",
+          "passed": true,
+          "criterion": ">= 49.50 Hz",
+          "basis": "Illustrative engineering study target"
+        },
+        {
+          "name": "AI workload ramp",
+          "passed": false,
+          "criterion": "<= 20 MW/s, 100 ms window",
+          "basis": "Illustrative engineering study target"
+        },
+        {
+          "name": "Harmonic voltage",
+          "passed": false,
+          "criterion": "THDv <= 3% for assumed spectrum",
+          "basis": "Illustrative engineering study target"
+        },
+        {
+          "name": "IT supply continuity",
+          "passed": false,
+          "criterion": "unserved energy <= 0.1 kWh",
+          "basis": "Illustrative engineering study target"
+        }
+      ],
+      "national_screen": {
+        "profile": "FI directly transmission-connected large demand, June 2026",
+        "applicability": "Potentially applicable to new >=30 MW directly connected demand; confirm project terms",
+        "source": "https://www.fingrid.fi/globalassets/dokumentit/fi/palvelut/kulutuksen-ja-tuotannon-liittaminen-kantaverkkoon/fingrid---suurten-kulutuslaitosten-tekniset-vaatimukset.pdf",
+        "basis": "Section 9.1.11; reduced-model recovery screening only",
+        "status": "MEETS RECOVERY SCREEN",
+        "grid_demand_at_deadline_pu": 1.0,
+        "deadline_s": 3.16,
+        "criterion": ">=90% pre-fault grid demand by 1 s after V>=0.90 pu",
+        "whole_facility_disconnection_detected": true,
+        "frt_conclusion": "Protection logic requires redesign and EMT verification"
+      }
+    },
+    "ups": {
+      "metrics": {
+        "min_voltage_pu": 0.5641803632251368,
+        "postfault_min_voltage_pu": 0.94724447734194,
+        "frequency_nadir_hz": 49.81191582638392,
+        "max_rocof_hz_s": 0.09811655885556547,
+        "max_ramp_mw_s": 1000.0,
+        "workload_ramp_mw_s": 150.000000000001,
+        "unserved_mwh": 0.0,
+        "bess_throughput_mwh": 0.0,
+        "final_soc": 0.6,
+        "thdv_percent": 5.539785779716444,
+        "no_equilibrium_samples": 0,
+        "steady_voltage_pu": 0.9472444773419398
+      },
+      "checks": [
+        {
+          "name": "Post-fault recovery",
+          "passed": true,
+          "criterion": ">= 0.90 pu after clearance + 0.5 s",
+          "basis": "Illustrative engineering study target"
+        },
+        {
+          "name": "Frequency nadir",
+          "passed": true,
+          "criterion": ">= 49.50 Hz",
+          "basis": "Illustrative engineering study target"
+        },
+        {
+          "name": "AI workload ramp",
+          "passed": false,
+          "criterion": "<= 20 MW/s, 100 ms window",
+          "basis": "Illustrative engineering study target"
+        },
+        {
+          "name": "Harmonic voltage",
+          "passed": false,
+          "criterion": "THDv <= 3% for assumed spectrum",
+          "basis": "Illustrative engineering study target"
+        },
+        {
+          "name": "IT supply continuity",
+          "passed": true,
+          "criterion": "unserved energy <= 0.1 kWh",
+          "basis": "Illustrative engineering study target"
+        }
+      ],
+      "national_screen": {
+        "profile": "FI directly transmission-connected large demand, June 2026",
+        "applicability": "Potentially applicable to new >=30 MW directly connected demand; confirm project terms",
+        "source": "https://www.fingrid.fi/globalassets/dokumentit/fi/palvelut/kulutuksen-ja-tuotannon-liittaminen-kantaverkkoon/fingrid---suurten-kulutuslaitosten-tekniset-vaatimukset.pdf",
+        "basis": "Section 9.1.11; reduced-model recovery screening only",
+        "status": "RECOVERY RISK",
+        "grid_demand_at_deadline_pu": 0.1575000000000002,
+        "deadline_s": 3.165,
+        "criterion": ">=90% pre-fault grid demand by 1 s after V>=0.90 pu",
+        "whole_facility_disconnection_detected": true,
+        "frt_conclusion": "Protection logic requires redesign and EMT verification"
+      }
+    },
+    "coordinated": {
+      "metrics": {
+        "min_voltage_pu": 0.5862119582180425,
+        "postfault_min_voltage_pu": 0.9843855511803411,
+        "frequency_nadir_hz": 49.84011758375589,
+        "max_rocof_hz_s": 0.11066136911921376,
+        "max_ramp_mw_s": 966.1698196874576,
+        "workload_ramp_mw_s": 70.56272718719427,
+        "unserved_mwh": 0.0,
+        "bess_throughput_mwh": 0.08847394994509093,
+        "final_soc": 0.5976098063245857,
+        "thdv_percent": 1.6060559348421164,
+        "no_equilibrium_samples": 0,
+        "steady_voltage_pu": 0.9857262444726693
+      },
+      "checks": [
+        {
+          "name": "Post-fault recovery",
+          "passed": true,
+          "criterion": ">= 0.90 pu after clearance + 0.5 s",
+          "basis": "Illustrative engineering study target"
+        },
+        {
+          "name": "Frequency nadir",
+          "passed": true,
+          "criterion": ">= 49.50 Hz",
+          "basis": "Illustrative engineering study target"
+        },
+        {
+          "name": "AI workload ramp",
+          "passed": false,
+          "criterion": "<= 20 MW/s, 100 ms window",
+          "basis": "Illustrative engineering study target"
+        },
+        {
+          "name": "Harmonic voltage",
+          "passed": true,
+          "criterion": "THDv <= 3% for assumed spectrum",
+          "basis": "Illustrative engineering study target"
+        },
+        {
+          "name": "IT supply continuity",
+          "passed": true,
+          "criterion": "unserved energy <= 0.1 kWh",
+          "basis": "Illustrative engineering study target"
+        }
+      ],
+      "national_screen": {
+        "profile": "FI directly transmission-connected large demand, June 2026",
+        "applicability": "Potentially applicable to new >=30 MW directly connected demand; confirm project terms",
+        "source": "https://www.fingrid.fi/globalassets/dokumentit/fi/palvelut/kulutuksen-ja-tuotannon-liittaminen-kantaverkkoon/fingrid---suurten-kulutuslaitosten-tekniset-vaatimukset.pdf",
+        "basis": "Section 9.1.11; reduced-model recovery screening only",
+        "status": "RECOVERY RISK",
+        "grid_demand_at_deadline_pu": 0.5549999937998151,
+        "deadline_s": 3.16,
+        "criterion": ">=90% pre-fault grid demand by 1 s after V>=0.90 pu",
+        "whole_facility_disconnection_detected": true,
+        "frt_conclusion": "Protection logic requires redesign and EMT verification"
+      }
+    }
+  },
+  "execution_seconds": 16.858,
+  "python": "3.13.4",
+  "engine_sha256": "8016d5109ea6ee6bc6c2451849ea705d21847b0edaaa15802a94b0373c8cca22"
+}

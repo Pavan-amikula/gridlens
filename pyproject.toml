@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gridlens"
+version = "1.0.0"
+description = "Large data center interconnection risk and mitigation study bench"
+requires-python = ">=3.11"
+dependencies = ["numpy>=2.0,<3", "scipy>=1.13,<2", "fastapi>=0.115,<1", "uvicorn>=0.30,<1", "matplotlib>=3.9,<4"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "httpx>=0.27,<1", "playwright>=1.48,<2", "imageio>=2.35,<3", "imageio-ffmpeg>=0.5,<1", "pillow>=10,<13"]
+data = ["pyarrow>=17,<25"]
+
+[project.scripts]
+gridlens = "gridlens.server:main"
+
+[tool.setuptools.packages.find]
+include = ["gridlens*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
